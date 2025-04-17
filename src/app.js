@@ -7,10 +7,9 @@ const { default: helmet } = require('helmet')
 const compression = require('compression')
 const cors = require('cors')
 const app = express()
-const PORT = process.env.PORT || 4000;  // Use PORT environment variable or default to 3000
 const allowedOrigins = [
     'http://localhost:3000',
-    'https://idyllic-dasik-ee9e5f.netlify.app'
+    'https://nhom9-chuyendeweb.netlify.app'
   ];
   
   app.use(cors({
