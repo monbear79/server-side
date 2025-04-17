@@ -7,12 +7,27 @@ const { default: helmet } = require('helmet')
 const compression = require('compression')
 const cors = require('cors')
 const app = express()
-
-app.use(cors({
-    origin: 'http://localhost:3000',
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'authorization', 'x-client-id', 'x-rtoken-id']
-}))
+const PORT = process.env.PORT || 4000;  // Use PORT environment variable or default to 3000
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://idyllic-dasik-ee9e5f.netlify.app'
+  ];
+  
+  app.use(cors({
+      origin: function (origin, callback) {
+          // Allow requests with no origin (like mobile apps or curl)
+          if (!origin) return callback(null, true);
+          if (allowedOrigins.includes(origin)) {
+              return callback(null, true);
+          } else {
+              return callback(new Error('Not allowed by CORS'));
+          }
+      },
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'authorization', 'x-client-id', 'x-rtoken-id'],
+      credentials: true
+  }));
+  
 //init middlewares
 app.use(morgan("dev"))
 app.use(
