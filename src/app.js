@@ -10,7 +10,7 @@ const app = express()
 
 const allowedOrigins = [
     'http://localhost:3000',
-    'https://nhom9-chuyendeweb.netlify.app/'
+    'https://nhom9-chuyendeweb.netlify.app'
   ];
   
   app.use(cors({
