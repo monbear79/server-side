@@ -27,6 +27,8 @@ const allowedOrigins = [
       allowedHeaders: ['Content-Type', 'authorization', 'x-client-id', 'x-rtoken-id'],
       credentials: true
   }));
+  app.options('*', cors());
+
 //init middlewares
 app.use(morgan("dev"))
 app.use(
